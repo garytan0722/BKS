@@ -1,0 +1,8 @@
+ktl241sta資料夾內執行run_ktl批次檔- > 打開後從介面選 create →　KeyStore，格式選 BKS，自己命名一下，要不要設密碼都可。接著選 import → Keystore’s entry → Trusted certificate → Regular certificate。 Source 的部分選 PEM 並選到剛剛瀏覽器得到的那個檔，Target 當然選 BKS 和剛 create 出來的檔。按OK之後會跳出Entries視窗，下方提示你enter new alias，隨便取個名字後ok連打，順利的話你應該就會有一個 your_keystore.bks 之類的檔案了。
+
+
+
+
+再講講憑證放在 resources 的方法。首先把檔案複製到專案下的 res/raw/your_keystore.bks 。Eclipse 沒有錯誤的話就 ok，否則多半是你檔名不合規格，稍微改改。接著取用方法是把 android 程式碼改成：
+
+InputStream instream = getResources().openRawResource(R.raw.your_keystore);  
